@@ -8,7 +8,7 @@ use MySampleDB;
 CREATE TABLE sales(
 ID INT, 
 order_date Date,
-cunt_product INT
+count_product INT
 );
 
 INSERT INTO sales (ID, order_date, count_product)
