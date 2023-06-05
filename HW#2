@@ -1,0 +1,58 @@
+CREATE DATABASE MySampleDB;
+
+show databases;
+
+use MySampleDB;
+
+
+CREATE TABLE sales(
+ID INT, 
+order_date Date,
+cunt_product INT
+);
+
+INSERT INTO sales (ID, order_date, count_product)
+VALUES (1, '2022-01-01', 156),
+       (2, '2022-01-02', 180),
+       (3, '2022-01-03', 21),
+       (4, '2022-01-04', 124),
+       (5, '2022-01-05', 341);
+
+ALTER TABLE sales
+ADD COLUMN order_type VARCHAR(20);
+
+UPDATE sales
+SET order_type = 
+    CASE
+        WHEN count_product < 100 THEN 'Маленький заказ'
+        WHEN count_product >= 100 AND count_product <= 300 THEN 'Средний заказ'
+        WHEN count_product > 300 THEN 'Большой заказ'
+        ELSE 'Неизвестный тип заказа'
+    END;
+
+CREATE TABLE sales (
+    ID INT,
+    employee_id VARCHAR(10),
+    amount DECIMAL(10, 2),
+    order_status VARCHAR(10)
+);
+
+INSERT INTO sales (ID, employee_id, amount, order_status)
+VALUES (1, 'e03', 15.00, 'OPEN'),
+       (2, 'e01', 25.50, 'OPEN'),
+       (3, 'e05', 100.70, 'CLOSED'),
+       (4, 'e02', 22.18, 'OPEN'),
+       (5, 'e04', 9.50, 'CANCELLED');
+
+ALTER TABLE sales
+ADD COLUMN full_order_status VARCHAR(30);
+
+UPDATE sales
+SET full_order_status =
+    CASE order_status
+        WHEN 'OPEN' THEN 'Order is in open state'
+        WHEN 'CLOSED' THEN 'Order is closed'
+        WHEN 'CANCELLED' THEN 'Order is cancelled'
+        ELSE 'Unknown order status'
+    END;
+    
